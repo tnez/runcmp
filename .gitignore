@@ -1,2 +1,8 @@
 .project
 .pydevproject
+build/*
+dist/*
+src/build/*
+src/runcmp.egg-info/*
+*.pyc
+.xdebug_tkmedit
