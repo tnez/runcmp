@@ -21,7 +21,7 @@ def main(argv):
     # parse the command line arguments
     try:
         opts, args = getopt.getopt(argv, "b:d:hp:v:", ["b-values", "help", "project-dir",
-                                                       "pickle-file", "vector-file", "version"])
+                                                 "pickle-file", "vector-file", "version"])
     except getopt.GetoptError:
         display_usage()
         sys.exit(2)
@@ -49,18 +49,12 @@ def main(argv):
     run(subjects)
     
 def display_usage():
-    """Display usage menu to the user"""
-    f = open('lib/usage', 'r')
-    text = f.read()
-    print(text)
-    f.close()
+    # TODO: access and print usage file
+    print "This is on the wish list"
 
 def display_version():
-    """Display the version to the user"""
-    f = open('lib/version', 'r')
-    text = f.read()
-    print(text)
-    f.close()
+    from info import __version__
+    print __version__
 
 def get_subjects(project_dir):
     '''
@@ -90,8 +84,8 @@ def setup(pickle_file, project_dir, vector_file=None, b_values=None):
     cmpgui.load_state(pickle_file)
     cmpgui.project_dir = project_dir
     if(vector_file):
-        cmpgui.gradient_table = 'custom'
         cmpgui.gradient_table_file = vector_file
+        cmpgui.gradient_table = 'custom'
     if(b_values):
         cmpgui.nr_of_b0 = b_values
 

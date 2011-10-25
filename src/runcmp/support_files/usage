@@ -1,0 +1,27 @@
+
+runcmp v.0.1.1
+Auth: tnez
+Date: 2011-10-03
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  Required Arguments:
+
+    -b:'number-of-b-values', --b-values='...' : number of b-values included
+        in scans
+    -p:'path-to-pickle-file', --pickle-file='...' : load the configuration
+        stored in the given pickle file
+    -v:'path-to-vector-file', --vector-file='...' : the bvec file
+
+  Optional Arguments:
+
+    -d:'path-to-project-directory', --project-dir='...' : this directory
+        should contain all subject directories that you wish to run;
+        this script will iterate over all child directories. Extraneous,
+        non-subject, directories will cause errors
+    -h, --help : display this dialog
+    --version : display the current version of this software
+
+  Example:
+
+   python runcmp.py -p:'~/pickle_files/my-pickle-file.pkl' -d:'~/data/my-project'
+                    -v:'~/data/my-project/bvec' -b:4
