@@ -6,22 +6,39 @@ Date: 2011-10-03
 
   Required Arguments:
 
-    -b:'number-of-b-values', --b-values='...' : number of b-values included
-        in scans
     -p:'path-to-pickle-file', --pickle-file='...' : load the configuration
         stored in the given pickle file
-    -v:'path-to-vector-file', --vector-file='...' : the bvec file
 
   Optional Arguments:
 
-    -d:'path-to-project-directory', --project-dir='...' : this directory
+    -b:'number-of-b-values', --b-values='...' : number of b-values included
+        in scans
+  * -d:'path-to-project-directory', --project-dir='...' : this directory
         should contain all subject directories that you wish to run;
         this script will iterate over all child directories. Extraneous,
         non-subject, directories will cause errors
     -h, --help : display this dialog
+    (todo) -m, comma-sperated list of keys and values "key1,value1,key2,value2..."
+    -s: subject id
+    (todo) -t: test run, ie set values and output but do not actually run cmp
+    -v:'path-to-vector-file', --vector-file='...' : the bvec file
     --version : display the current version of this software
+  * -w: working directory
 
-  Example:
+  * either a subject xor working directory must be specified
 
-   python runcmp.py -p:'~/pickle_files/my-pickle-file.pkl' -d:'~/data/my-project'
-                    -v:'~/data/my-project/bvec' -b:4
+  Examples:
+
+  Iterate over a specified directory full of subject directories,
+  using a given pickle-file, gradient-map, and specify 4 b-values.
+
+    python runcmp.py -p $HOME/pickle_files/my-pickle-file.pkl
+                     -d $HOME/data/my-project
+                     -v $HOME/data/my-project/bvec -b 4
+
+  Run the specified subject timepoint whilst providing metadata to be
+  used at processing time.
+
+    python runcmp.py -p $HOME/pickle_files/my-pickle-file.pkl -s 317
+                     -m "group,control,tp,1"
+                     -w $HOME/data/my-project/317/timepoints/1
