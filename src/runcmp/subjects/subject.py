@@ -33,7 +33,8 @@ class Subject(object):
         '''
         Can we find the expected RAWDATA directory given our existing parameters?
         '''
-        return op.isdir(op.join(self.working_dir(),'RAWDATA'))
+        return (op.isdir(op.join(self.working_dir(),'RAWDATA')) or 
+                op.isdir(op.join(self.working_dir(),'NIFTI')))
     
     def working_dir(self):
         '''
