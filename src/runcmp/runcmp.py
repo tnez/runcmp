@@ -114,7 +114,7 @@ def run(subjects):
             cmpgui.subject_workingdir = subjects.directory
             cmp.connectome.mapit(cmpgui)
         else:
-            print 'ERROR: Subject ' + s.ID + ' is invalid!'            
+            print 'ERROR: Subject ' + subjects.ID + ' is invalid!'            
         
 def setup(pickle_file, project_dir, vector_file=None, b_values=None):
     """Setup configuration for subsequent runs"""
