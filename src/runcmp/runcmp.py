@@ -102,17 +102,17 @@ def run_subject(subject):
         cmpgui.subject_workingdir = subject.directory
         cmp.connectome.mapit(cmpgui)
     else:
-        print 'ERROR: Subject ' + subjects.ID + ' is invalid!'            
+        print 'ERROR: Subject ' + subject.ID + ' is invalid!'            
 
 def run_subjects(subjects):
     """For each subject, run connectome mapper with our params"""
     for subject in subjects:
-        if(s.is_valid()):
+        if(subject.is_valid()):
             cmpgui.subject_name = subject.ID
             cmpgui.subject_workingdir = subject.directory
             cmp.connectome.mapit(cmpgui)
         else:
-            print 'ERROR: Subject ' + s.ID + ' is invalid!'
+            print 'ERROR: Subject ' + subject.ID + ' is invalid!'
 
 def setup(pickle_file, project_dir, vector_file=None, b_values=None):
     """Setup configuration for subsequent runs"""
