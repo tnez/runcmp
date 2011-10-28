@@ -58,14 +58,14 @@ def main(argv):
     if project_dir:
         setup(pickle_file, project_dir, vector_file, b_values)
         # get subjects
-        subjects = get_subjects(project_dir)
+        my_subjects = get_subjects(project_dir)
         # run subjects
-        run(subjects)
+        run_subjects(my_subjects)
     # else, if we are using a single subject / timepoint directory
     elif working_dir:
         setup(pickle_file, working_dir, vector_file, b_values)
         my_subject = subject.Subject(subject_id, working_dir)
-        run(my_subject)
+        run_subject(my_subject)
     # otherwise we don't have the information we need to proceed
     else:
         print "Need to provide either a subject and working directory or a batch directory."
@@ -96,27 +96,24 @@ def get_subjects(project_dir):
             my_subjects.append(subject.Subject(path, fullpath))
     return my_subjects
 
-def run(subjects):
+def run_subject(subject):
+    if(subject.is_valid()):
+        cmpgui.subject_name = subject.ID
+        cmpgui.subject_workingdir = subject.directory
+        cmp.connectome.mapit(cmpgui)
+    else:
+        print 'ERROR: Subject ' + subjects.ID + ' is invalid!'            
+
+def run_subjects(subjects):
     """For each subject, run connectome mapper with our params"""
-    # first try to treat as list, will cause exception if only a
-    # single subject
-    try:
-        for s in subjects:
-            if(s.is_valid()):
-                cmpgui.subject_name = s.ID
-                cmpgui.subject_workingdir = s.directory
-                cmp.connectome.mapit(cmpgui)
-            else:
-                print 'ERROR: Subject ' + s.ID + ' is invalid!'
-        break
-    except TypeError:
-        if(subjects.is_valid()):
-            cmpgui.subject_name = subjects.ID
-            cmpgui.subject_workingdir = subjects.directory
-            cmp.connectome.mapit(cmpgui)
-        else:
-            print 'ERROR: Subject ' + subjects.ID + ' is invalid!'            
-        
+     for subject in subjects:
+         if(s.is_valid()):
+             cmpgui.subject_name = subject.ID
+             cmpgui.subject_workingdir = subject.directory
+             cmp.connectome.mapit(cmpgui)
+         else:
+             print 'ERROR: Subject ' + s.ID + ' is invalid!'
+
 def setup(pickle_file, project_dir, vector_file=None, b_values=None):
     """Setup configuration for subsequent runs"""
     cmpgui.load_state(pickle_file)
