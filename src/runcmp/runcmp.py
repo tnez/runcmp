@@ -108,6 +108,7 @@ def run(subjects):
                 cmp.connectome.mapit(cmpgui)
             else:
                 print 'ERROR: Subject ' + s.ID + ' is invalid!'
+        break
     except TypeError:
         if(subjects.is_valid()):
             cmpgui.subject_name = subjects.ID
